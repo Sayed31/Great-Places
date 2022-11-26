@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+//This is a great plug in which makes it very easy to work with the device camera,
+// select the image or
+// take an image and then work with that image.
 
 class imageInput extends StatefulWidget {
   const imageInput({Key? key}) : super(key: key);
@@ -10,6 +14,15 @@ class imageInput extends StatefulWidget {
 
 class _imageInputState extends State<imageInput> {
   // late File _storedImage;
+
+  Future<void> _takePicture() async {
+    final picker = ImagePicker();
+    final imageFile = await picker.pickImage(
+      source: ImageSource.camera,
+      maxWidth: 600,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -41,11 +54,18 @@ class _imageInputState extends State<imageInput> {
           width: 10,
         ),
         Expanded(
-          child: FlatButton.icon(
-            icon: Icon(Icons.camera),
-            label: Text('Take Picture'),
-            textColor: Theme.of(context).primaryColor,
-            onPressed: () {},
+          child: TextButton.icon(
+            icon: Icon(
+              Icons.camera,
+              color: Theme.of(context).primaryColor,
+            ),
+            label: Text(
+              'Take Picture',
+              style: TextStyle(
+                color: Theme.of(context).primaryColor,
+              ),
+            ),
+            onPressed: _takePicture,
           ),
         ),
       ],
