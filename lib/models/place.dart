@@ -16,7 +16,7 @@ class PlaceLocation {
 class Place {
   final String id;
   final String title;
-  final PlaceLocation location;
+  final PlaceLocation? location;
   final File image;
   //Since we'll now work with images that are stored on the device, I'll actually use the file data type
   // here.

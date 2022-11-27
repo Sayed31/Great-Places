@@ -14,7 +14,8 @@ import 'package:path/path.dart' as path;
 //acces by the path provider. This package helps us with combining paths basically.
 
 class imageInput extends StatefulWidget {
-  const imageInput({Key? key}) : super(key: key);
+  imageInput(this._saveImage);
+  Function _saveImage;
 
   @override
   State<imageInput> createState() => _imageInputState();
@@ -37,16 +38,18 @@ class _imageInputState extends State<imageInput> {
       });
       final appDir = await syspaths.getApplicationDocumentsDirectory();
       final fileName = path.basename(imageFile.path);
+      print("--------------------> $fileName");
       //gives you The part of a path after the last separator,
       // which is a complex name for saying the file name.
 
       final savedImage = await _storedImage!
-          .copy('${appDir}/${fileName}'); // copying the image to a path
+          .copy('${appDir.path}/${fileName}'); // copying the image to a path
       // in the device hard for storing it there
       // we could just typed await _storedImage!
       //           .copy(appDir);
       // but you also have to provide the name of the image it should have.
       // n i wanted to store it with the image name automatically assigned to it
+      widget._saveImage(savedImage);
     }
   }
 
