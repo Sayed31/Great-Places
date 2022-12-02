@@ -5,6 +5,8 @@ import 'dart:io';
 
 import 'package:provider/provider.dart';
 
+import '../widgets/location_input.dart';
+
 class AddPlaceScreen extends StatefulWidget {
   const AddPlaceScreen({Key? key}) : super(key: key);
   static const String id = '/add-place-screen';
@@ -56,6 +58,10 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                       height: 10,
                     ),
                     imageInput(_savedImage),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    LocationInput(),
                   ],
                 ),
               ),
